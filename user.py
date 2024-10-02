@@ -22,7 +22,7 @@ def user_login():
             st.success('登入成功！')
             st.session_state['authenticated'] = True
             st.session_state['username'] = username
-            yield username , email
+            yield user , email
         else:
             st.error('使用者名稱或密碼錯誤')
 
