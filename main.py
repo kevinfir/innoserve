@@ -3,7 +3,6 @@ from database import get_connection
 import user
 import superuser_login
 import principal
-import time
 # 建立資料庫連接
 conn = get_connection('users.db')
 c = conn.cursor()
@@ -39,22 +38,18 @@ if auth_mode == '使用者':
         user.user_login()
     elif user_auth_mode == '註冊':
         user.user_register()
-    while True:
+    
     # 檢查是否已經登入
-        if 'authenticated' in st.session_state and st.session_state['authenticated']:
+    if 'authenticated' in st.session_state and st.session_state['authenticated']:
             st.write("歡迎來到主頁面！")
+    while True:
             # 在這裡可以添加導航到另一個 Streamlit 應用程式的邏輯
             if st.button('前往另一個應用程式'):
                 st.write("導航到另一個應用程式...")
-                st.write('等待五秒鐘')
-
-                with st.spinner('等待五秒鐘'):
-                    time.sleep(5)
                 import order
                 order
             else:
                 st.write("請先登入。")
-        time.sleep(3)
 
 elif auth_mode == '管理員':
     if 'admin_authenticated' not in st.session_state:
