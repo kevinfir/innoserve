@@ -61,15 +61,11 @@ elif auth_mode == '管理員':
     else:
         superuser_login.admin_dashboard()
     # 檢查是否已經登入
-if 'authenticated' in st.session_state and st.session_state['authenticated']:
-        st.write("歡迎來到主頁面！")
-        while True:
-            if st.button('前往另一個應用程式'):
-                st.write("導航到另一個應用程式...")
-                try:
-                    import order
-                    order
-                except Exception as e:
-                    st.error(f"導航到另一個應用程式失敗: {e}")
-else:
-    st.write("請先登入。")
+a = st.button('前往另一個應用程式')
+while a:
+    st.write("導航到另一個應用程式...")
+    try:
+        import order
+        order
+    except Exception as e:
+        st.error(f"導航到另一個應用程式失敗: {e}")
