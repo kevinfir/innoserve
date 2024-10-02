@@ -18,12 +18,14 @@ def admin_dashboard():
     st.write('用戶列表')
     try:
         import user_see
+        user_see
     except ImportError as e:
         st.error(f'匯入 user_see 模組失敗: {e}')
 
     st.write('定位資訊')
     try:
         import order_see
+        order_see
     except ImportError as e:
         st.error(f'匯入 order_see 模組失敗: {e}')
 

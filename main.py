@@ -46,6 +46,7 @@ if auth_mode == '使用者':
         if st.button('前往另一個應用程式'):
             st.write("導航到另一個應用程式...")
             import order
+            order
     else:
         st.write("請先登入。")
 
