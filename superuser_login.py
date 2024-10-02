@@ -8,7 +8,7 @@ def admin_login():
     password = st.text_input('輸入密碼', type='password')
 
     if st.button('Login'):
-        if spuser == 'jeremy' and password == '0123546789':
+        if spuser == 'jeremy' and password == '123456789':
             st.success('密碼正確!歡迎管理員')
             st.session_state['admin_authenticated'] = True
         else:
@@ -28,4 +28,3 @@ def admin_dashboard():
         order_see
     except ImportError as e:
         st.error(f'匯入 order_see 模組失敗: {e}')
-
