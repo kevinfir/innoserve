@@ -23,16 +23,16 @@ except Exception as e:
 
 if user:
     username, email = user
+    date = st.date_input('選擇日期', datetime.date.today())
+    # 場地選擇
+    venue = st.selectbox('選擇場地', ['編號1', '編號2', '編號3', '編號4', '編號5', '編號6', '編號7'])
 else:
     st.error('用戶名稱不存在於 users.db 中')
     username = None
     email = None
 
 # 日期選擇器
-date = st.date_input('選擇日期', datetime.date.today())
 
-# 場地選擇
-venue = st.selectbox('選擇場地', ['編號1', '編號2', '編號3', '編號4', '編號5', '編號6', '編號7'])
 
 # 提交按鈕
 if st.button('提交') and username and email:
