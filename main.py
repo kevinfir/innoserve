@@ -42,6 +42,12 @@ if auth_mode == '使用者':
     # 檢查是否已經登入
     if 'authenticated' in st.session_state and st.session_state['authenticated']:
         st.write("歡迎來到主頁面！")
+        if user:
+            username, email = user
+        else:
+            st.error('用戶名稱不存在於 users.db 中')
+            username = None
+            email = None
         # 在這裡可以添加導航到另一個 Streamlit 應用程式的邏輯
         if st.button('前往另一個應用程式'):
             st.write("導航到另一個應用程式...")
