@@ -1,10 +1,13 @@
 import streamlit as st
 import datetime
 from database import get_connection
-import user as usering
+
 # 引用外部 CSS 檔案
-with open('styles.css') as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+try:
+    with open('styles.css') as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+except Exception as e:
+    st.error(f"引用外部 CSS 檔案失敗: {e}")
 
 # 假設用戶已經登入並且用戶名稱儲存在 session_state 中
 if 'username' not in st.session_state:
@@ -21,8 +24,8 @@ except Exception as e:
     st.error(f'發生錯誤: {e}')
     user = None
 
-if usering.user_login():
-    username, email = usering.user_login()
+if user:
+    username, email = user
 else:
     st.error('用戶名稱不存在於 users.db 中')
     username = None

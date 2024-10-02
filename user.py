@@ -12,9 +12,6 @@ def user_login():
     if login_button:
         conn = get_connection('users.db')
         c = conn.cursor()
-        mail = conn.cursor()
-        mail.execute("SELECT email FROM users")
-        email = mail.fetchone()
         c.execute('SELECT * FROM users WHERE username=? AND password=?', (username, password))
         user = c.fetchone()
         conn.close()
@@ -22,7 +19,6 @@ def user_login():
             st.success('登入成功！')
             st.session_state['authenticated'] = True
             st.session_state['username'] = username
-            yield user , email
         else:
             st.error('使用者名稱或密碼錯誤')
 
