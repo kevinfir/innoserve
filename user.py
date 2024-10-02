@@ -48,3 +48,19 @@ def user_register():
                 st.error('密碼必須為 8 到 20 位數')
         else:
             st.error('請填寫所有欄位')
+
+def user_check():
+    # 假設用戶已經登入並且用戶名稱儲存在 session_state 中
+    if 'username' not in st.session_state:
+        st.session_state['username'] = 'test_user'  # 這裡應該是用戶登入後的用戶名稱
+
+    # 連接到 users.db 並獲取用戶名稱和電子郵件
+    try:
+        users_conn = get_connection('users.db')
+        users_c = users_conn.cursor()
+        users_c.execute('SELECT username, email FROM users WHERE username=?', (st.session_state['username'],))
+        user = users_c.fetchone()
+        users_conn.close()
+    except Exception as e:
+        st.error(f'發生錯誤: {e}')
+        user = None
