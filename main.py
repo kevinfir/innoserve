@@ -36,19 +36,19 @@ if auth_mode == '使用者':
     user_auth_mode = st.sidebar.selectbox('選擇身份驗證模式', ['登入', '註冊'])
     if user_auth_mode == '登入':
         user.user_login()
+        while True:
+    # 檢查是否已經登入
+            if 'authenticated' in st.session_state and st.session_state['authenticated']:
+                st.write("歡迎來到主頁面！")
+                # 在這裡可以添加導航到另一個 Streamlit 應用程式的邏輯
+                st.button('前往另一個應用程式')
+                st.write("導航到另一個應用程式...")
+                import order
+                order
+            else:
+                st.write("請先登入。")
     elif user_auth_mode == '註冊':
         user.user_register()
-    while True:
-    # 檢查是否已經登入
-        if 'authenticated' in st.session_state and st.session_state['authenticated']:
-            st.write("歡迎來到主頁面！")
-            # 在這裡可以添加導航到另一個 Streamlit 應用程式的邏輯
-            st.button('前往另一個應用程式')
-            st.write("導航到另一個應用程式...")
-            import order
-            order
-        else:
-            st.write("請先登入。")
 
 elif auth_mode == '管理員':
     if 'admin_authenticated' not in st.session_state:
@@ -58,3 +58,5 @@ elif auth_mode == '管理員':
         superuser_login.admin_login()
     else:
         superuser_login.admin_dashboard()
+    
+
