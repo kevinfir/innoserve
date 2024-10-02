@@ -45,15 +45,23 @@ except Exception as e:
 # 建立選項卡來切換身份驗證模式
 auth_mode = st.sidebar.selectbox('選擇身份驗證模式', ['使用者', '管理員'])
 
+
 if auth_mode == '使用者':
     user_auth_mode = st.sidebar.selectbox('選擇身份驗證模式', ['登入', '註冊'])
     if user_auth_mode == '登入':
         user.user_login()
     elif user_auth_mode == '註冊':
         user.user_register()
+elif auth_mode == '管理員':
+    if 'admin_authenticated' not in st.session_state:
+        st.session_state['admin_authenticated'] = False
 
+    if not st.session_state['admin_authenticated']:
+        superuser_login.admin_login()
+    else:
+        superuser_login.admin_dashboard()
     # 檢查是否已經登入
-    if 'authenticated' in st.session_state and st.session_state['authenticated']:
+if 'authenticated' in st.session_state and st.session_state['authenticated']:
         st.write("歡迎來到主頁面！")
         while True:
             if st.button('前往另一個應用程式'):
@@ -63,14 +71,5 @@ if auth_mode == '使用者':
                     order
                 except Exception as e:
                     st.error(f"導航到另一個應用程式失敗: {e}")
-    else:
-        st.write("請先登入。")
-
-elif auth_mode == '管理員':
-    if 'admin_authenticated' not in st.session_state:
-        st.session_state['admin_authenticated'] = False
-
-    if not st.session_state['admin_authenticated']:
-        superuser_login.admin_login()
-    else:
-        superuser_login.admin_dashboard()
+else:
+    st.write("請先登入。")
