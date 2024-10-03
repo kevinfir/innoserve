@@ -21,7 +21,13 @@ def user_login():
             st.session_state['username'] = username
         else:
             st.error('使用者名稱或密碼錯誤')
-
+def logout():
+    st.sidebar.title(f"歡迎，{st.session_state['username']}")
+    if st.sidebar.button("登出"):
+        st.session_state['authenticated'] = False
+        del st.session_state['username']
+        st.success("已成功登出！")
+        st.experimental_rerun()
 def user_register():
     st.header('註冊頁面')
     username = st.text_input('使用者名稱')

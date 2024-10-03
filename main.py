@@ -46,11 +46,13 @@ except Exception as e:
 auth_mode = st.sidebar.selectbox('選擇身份驗證模式', ['使用者', '管理員'])
 
 if auth_mode == '使用者':
-    user_auth_mode = st.sidebar.selectbox('選擇身份驗證模式', ['登入', '註冊'])
+    user_auth_mode = st.sidebar.selectbox('選擇身份驗證模式', ['登入', '註冊',"登出"])
     if user_auth_mode == '登入':
         user.user_login()
     elif user_auth_mode == '註冊':
         user.user_register()
+    elif user_auth_mode == '登出':
+        user.logout()
 
     # 檢查是否已經登入
     if 'authenticated' in st.session_state and st.session_state['authenticated']:
