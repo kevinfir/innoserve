@@ -66,7 +66,7 @@ if auth_mode == '使用者':
                     st.write(f"用戶名稱: {orderTrue[0]}, 電子郵件: {orderTrue[1]}")
                     order.submit(orderTrue)
                 else:
-                    st.error('定位失敗')
+                    st.error('訂位失敗')
             except Exception as e:
                 st.error(f"導航到另一個應用程式失敗: {e}")
     else:
@@ -77,10 +77,7 @@ elif auth_mode == '管理員':
         st.session_state['admin_authenticated'] = False
 
         if not st.session_state['admin_authenticated']:
-            checking = superuser_login.admin_login()
-            if checking:
-                superuser_login.admin_dashboard()
-                st.experimental_rerun()
-
+            superuser_login.admin_login()
+            
         else:
             superuser_login.admin_dashboard()

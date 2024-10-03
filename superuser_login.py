@@ -24,7 +24,7 @@ def admin_dashboard():
     except ImportError as e:
         st.error(f'匯入 user_see 模組失敗: {e}')
 
-    st.write('定位資訊')
+    st.write('訂位資訊')
     try:
         import order_see
         order_data = order_see.fetch_bookings()

@@ -28,12 +28,12 @@ def delete_booking(booking_id):
         st.error(f"刪除預訂失敗: {e}")
 
 # 顯示預訂資料並提供刪除選項
-st.header('預訂資料')
-bookings = fetch_bookings()
-if bookings:
-    for booking in bookings:
-        st.write(f"ID: {booking[0]}, 日期: {booking[1]}, 時段: {booking[2]}, 場地: {booking[3]}, 用戶名稱: {booking[4]}")
-        if st.button(f'刪除預訂 {booking[0]}', key=f"delete_{booking[0]}"):
-            delete_booking(booking[0])
-else:
-    st.write("目前沒有預訂資料。")
+    st.header('預訂資料')
+    bookings = fetch_bookings()
+    if bookings:
+        for booking in bookings:
+            st.write(f"ID: {booking[0]}, 日期: {booking[1]}, 時段: {booking[2]}, 場地: {booking[3]}, 用戶名稱: {booking[4]}")
+            if st.button(f'刪除預訂 {booking[0]}', key=f"delete_{booking[0]}"):
+                delete_booking(booking[0])
+    else:
+        st.write("目前沒有預訂資料。")
