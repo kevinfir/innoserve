@@ -73,13 +73,13 @@ if auth_mode == '使用者':
         st.write("請先登入。")
 
 elif auth_mode == '管理員':
-    # if 'admin_authenticated' not in st.session_state:
-#     st.session_state['admin_authenticated'] = False
+    if 'admin_authenticated' not in st.session_state:
+        st.session_state['admin_authenticated'] = False
 
-    if not st.session_state['admin_authenticated']:
-        checking = superuser_login.admin_login()
-        if checking:
+        if not st.session_state['admin_authenticated']:
+            checking = superuser_login.admin_login()
+            if checking:
+                superuser_login.admin_dashboard()
+
+        else:
             superuser_login.admin_dashboard()
-
-    else:
-        superuser_login.admin_dashboard()
