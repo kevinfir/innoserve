@@ -49,13 +49,13 @@ if auth_mode == '使用者':
     
     if user_auth_mode == '登入':
         user.user_login()
-        st.experimental_rerun()
+        
     elif user_auth_mode == '註冊':
         user.user_register()
-        st.experimental_rerun()
+        
     elif user_auth_mode == '登出':
         user.logout()
-        st.experimental_rerun()
+       
 
     # 檢查是否已經登入
     if 'authenticated' in st.session_state and st.session_state['authenticated']:
@@ -74,15 +74,15 @@ if auth_mode == '使用者':
                 st.error(f"導航到另一個應用程式失敗: {e}")
     else:
         st.write("請先登入。")
-    st.experimental_rerun()
+  
 elif auth_mode == '管理員':
     if 'admin_authenticated' not in st.session_state:
         st.session_state['admin_authenticated'] = False
 
         if not st.session_state['admin_authenticated']:
             superuser_login.admin_login()
-            st.experimental_rerun()
+         
         else:
             superuser_login.admin_dashboard()
-            st.experimental_rerun()
-    st.experimental_rerun()
+            
+    
