@@ -80,6 +80,7 @@ elif auth_mode == '管理員':
             checking = superuser_login.admin_login()
             if checking:
                 superuser_login.admin_dashboard()
+                st.experimental_rerun()
 
         else:
             superuser_login.admin_dashboard()
