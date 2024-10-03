@@ -25,6 +25,13 @@ def admin_dashboard():
     st.write('定位資訊')
     try:
         import order_see
-        order_see
+        order_data = order_see.fetch_bookings()
+        if order_data:
+            for order in order_data:
+                st.write(f"ID: {order[0]}, 日期: {order[1]}, 時段: {order[2]}, 場地: {order[3]}, 用戶名稱: {order[4]}")
+                if st.button(f'刪除預訂 {order[0]}', key=f"delete_{order[0]}"):
+                    order_see.delete_booking(order[0])
+        else:
+            st.write("目前沒有預訂資料。")
     except ImportError as e:
         st.error(f'匯入 order_see 模組失敗: {e}')
