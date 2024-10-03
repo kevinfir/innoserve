@@ -61,7 +61,12 @@ if auth_mode == '使用者':
             st.write("導航到另一個應用程式...")
             try:
                 import order
-                order
+                orderTrue = order.order()
+                if orderTrue:
+                    st.write(f"用戶名稱: {orderTrue[0]}, 電子郵件: {orderTrue[1]}")
+                    order.submit(orderTrue)
+                else:
+                    st.error('定位失敗')
             except Exception as e:
                 st.error(f"導航到另一個應用程式失敗: {e}")
     else:
