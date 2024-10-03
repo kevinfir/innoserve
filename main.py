@@ -56,7 +56,8 @@ if auth_mode == '使用者':
     elif user_auth_mode == '登出':
         user.logout()
        
-
+    auth_mode = st.sidebar.selectbox('選擇身份驗證模式', ['使用者', '管理員'])
+    user_auth_mode = st.sidebar.selectbox('選擇身份驗證模式', ['登入', '註冊',"登出"])
     # 檢查是否已經登入
     if 'authenticated' in st.session_state and st.session_state['authenticated']:
         st.write("歡迎來到主頁面！")
@@ -74,8 +75,10 @@ if auth_mode == '使用者':
                 st.error(f"導航到另一個應用程式失敗: {e}")
     else:
         st.write("請先登入。")
-    st.experimental_rerun()  # 重新運行應用程式以刷新頁面
+
 elif auth_mode == '管理員':
+    auth_mode = st.sidebar.selectbox('選擇身份驗證模式', ['使用者', '管理員'])
+    user_auth_mode = st.sidebar.selectbox('選擇身份驗證模式', ['登入', '註冊',"登出"])
     if 'admin_authenticated' not in st.session_state:
         st.session_state['admin_authenticated'] = False
 
@@ -84,5 +87,5 @@ elif auth_mode == '管理員':
          
         else:
             superuser_login.admin_dashboard()
-    st.experimental_rerun()        
+   
     
