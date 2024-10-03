@@ -22,7 +22,7 @@ def user_login():
         else:
             st.error('使用者名稱或密碼錯誤')
 def logout():
-    st.sidebar.title(f"歡迎，{st.session_state['username']}")
+    
     if st.sidebar.button("登出"):
         st.session_state['authenticated'] = False
         del st.session_state['username']
