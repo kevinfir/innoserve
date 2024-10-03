@@ -77,6 +77,9 @@ elif auth_mode == '管理員':
         st.session_state['admin_authenticated'] = False
 
         if not st.session_state['admin_authenticated']:
-            superuser_login.admin_login()
+            checking = superuser_login.admin_login()
+            if checking:
+                superuser_login.admin_dashboard()
+
         else:
             superuser_login.admin_dashboard()

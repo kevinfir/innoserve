@@ -11,8 +11,10 @@ def admin_login():
         if spuser == 'jeremy' and password == '123456789':
             st.success('密碼正確!歡迎管理員')
             st.session_state['admin_authenticated'] = True
+            return True
         else:
             st.error('密碼及名稱有誤，請重新輸入')
+            return False
 
 def admin_dashboard():
     st.write('用戶列表')
