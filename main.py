@@ -74,7 +74,7 @@ if auth_mode == '使用者':
                 st.error(f"導航到另一個應用程式失敗: {e}")
     else:
         st.write("請先登入。")
-  
+    st.experimental_rerun()  # 重新運行應用程式以刷新頁面
 elif auth_mode == '管理員':
     if 'admin_authenticated' not in st.session_state:
         st.session_state['admin_authenticated'] = False
@@ -84,5 +84,5 @@ elif auth_mode == '管理員':
          
         else:
             superuser_login.admin_dashboard()
-            
+    st.experimental_rerun()        
     
